@@ -13,14 +13,14 @@ import { env } from './.env';
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyBLHmb9k7z2AdpsTM62i8ir3NBTofLTiI8",
-    authDomain: "prueba-emt.firebaseapp.com",
-    databaseURL: "https://prueba-emt-default-rtdb.firebaseio.com",
-    projectId: "prueba-emt",
-    storageBucket: "prueba-emt.appspot.com",
-    messagingSenderId: "1074642426331",
-    appId: "1:1074642426331:web:870931d37324e0dd11effe",
-    measurementId: "G-XQTWPYVN6L"
+    apiKey: 'AIzaSyBLHmb9k7z2AdpsTM62i8ir3NBTofLTiI8',
+    authDomain: 'prueba-emt.firebaseapp.com',
+    databaseURL: 'https://prueba-emt-default-rtdb.firebaseio.com',
+    projectId: 'prueba-emt',
+    storageBucket: 'prueba-emt.appspot.com',
+    messagingSenderId: '1074642426331',
+    appId: '1:1074642426331:web:870931d37324e0dd11effe',
+    measurementId: 'G-XQTWPYVN6L',
   },
   version: env['npm_package_version'] + '-dev',
   serverUrl: '/api',
