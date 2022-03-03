@@ -1,38 +1,38 @@
 <div class="container-fluid">
   <div class="jumbotron text-center">
     <h1>
-      <img class="logo" src="assets/ngx-rocket-logo.png" alt="angular logo" />
-      <br />
-      <span translate>Enacment technical exam</span>
+      <img class="logo mb-3" src="assets/EMT-logo.png" alt="angular logo" /><br />
+      <span class="mt-5" translate>Enacment technical test</span>
     </h1>
     <app-loader [isLoading]="isLoading"></app-loader>
-
-    <div class="container">
-      <form (submit)="onSubmit()">
-        <div class="mt-5">
-          <input
-            type="number"
-            class="form-control"
-            name="numberInput"
-            [(ngModel)]="numberInput"
-            placeholder="Insert number"
-          />
-        </div>
-
-        <div class="mt-4 d-grid gap-2">
-          <input class="btn btn-primary" type="submit" value="Submit" />
-        </div>
-      </form>
-
-      <div *ngIf="isSending" class="spinner-border text-info mt-5" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-
+  </div>
+  <div class="container">
+    <form (submit)="onSubmit()">
       <div class="mt-5">
-        <p [style.color]="resultColor">
-          <strong>{{ result }}</strong>
-        </p>
+        <label for="numberInput" class="form-label" translate>Enter a number</label>
+        <input
+          type="number"
+          class="form-control"
+          id="numberInput"
+          name="numberInput"
+          [(ngModel)]="numberInput"
+          placeholder="Insert number"
+        />
       </div>
+
+      <div class="mt-4 d-grid gap-2">
+        <input class="btn btn-primary" type="submit" value="Submit" />
+      </div>
+    </form>
+
+    <div *ngIf="isSending" class="spinner-border text-info mt-5" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+
+    <div class="mt-5">
+      <p [style.color]="resultColor">
+        <strong>{{ result }}</strong>
+      </p>
     </div>
   </div>
 </div>
