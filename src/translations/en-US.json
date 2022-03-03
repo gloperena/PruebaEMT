@@ -1,8 +1,9 @@
 {
-  "APP_NAME": "ngX-Rocket",
+  "APP_NAME": "Technical test ETM (ngX-Rocket)",
   "About": "About",
-  "Enacment technical exam": "Enacment technical exam",
+  "Enacment technical test": "Enacment technical test",
   "Home": "Home",
+  "Enter a number": "Enter a number",
   "Logged in as": "Logged in as",
   "Login": "Login",
   "Logout": "Logout",
