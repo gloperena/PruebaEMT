@@ -51,42 +51,50 @@ export class HomeComponent implements OnInit {
   onSubmit() {
     this.isSending = true;
 
-    //Get an array of the multiples of the number
-    let multiples = this.getMultiples(this.numberInput);
+    if (this.numberInput != null) {
+      if (this.numberInput > 0) {
+        //Get an array of the multiples of the number
+        let multiples = this.getMultiples(this.numberInput);
 
-    //Check the smaller multiple and assign the color
-    if (multiples[0] == '3') {
-      this.resultColor = this.colores['green'];
-    } else if (multiples[0] == '5') {
-      this.resultColor = this.colores['red'];
-    } else if (multiples[0] == '7') {
-      this.resultColor = this.colores['blue'];
+        //Check the smaller multiple and assign the color
+        if (multiples[0] == '3') {
+          this.resultColor = this.colores['green'];
+        } else if (multiples[0] == '5') {
+          this.resultColor = this.colores['red'];
+        } else if (multiples[0] == '7') {
+          this.resultColor = this.colores['blue'];
+        } else {
+          this.resultColor = this.colores['black'];
+        }
+
+        //Generate the text from multiples separated by commas
+        let text = this.createText(multiples);
+
+        //Save the final result
+        this.result = this.numberInput + ' [' + text + ']';
+
+        //Store request in DB
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+        var dateTime = date + ' ' + time;
+
+        let request = <NgForm>{
+          value: {
+            number_requested: this.numberInput,
+            result: this.result,
+            requested_by: this.username,
+            requested_at: dateTime,
+          },
+        };
+
+        this.requestService.storeRequest(request.value);
+      }
     } else {
       this.resultColor = this.colores['black'];
+      this.result = 'Ingrese un número';
     }
 
-    //Generate the text from multiples separated by commas
-    let text = this.createText(multiples);
-
-    //Save the final result
-    this.result = this.numberInput + ' [' + text + ']';
-
-    //Store request in DB
-    var today = new Date();
-    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-    var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-    var dateTime = date + ' ' + time;
-
-    let request = <NgForm>{
-      value: {
-        number_requested: this.numberInput,
-        result: this.result,
-        requested_by: this.username,
-        requested_at: dateTime,
-      },
-    };
-
-    this.requestService.storeRequest(request.value);
     this.isSending = false;
   }
 
