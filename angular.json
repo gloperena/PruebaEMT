@@ -33,9 +33,7 @@
               "src/manifest.webmanifest",
               "src/assets"
             ],
-            "styles": [
-              "src/main.scss"
-            ],
+            "styles": ["./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css", "src/main.scss"],
             "scripts": []
           },
           "configurations": {
@@ -113,10 +111,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }

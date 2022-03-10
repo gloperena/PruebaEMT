@@ -19,6 +19,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 import { RequestService } from './home/request.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { RequestService } from './home/request.service';
     AuthModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AppRoutingModule, // must be imported as the last module as it contains the fallback route
+    AppRoutingModule,
+    BrowserAnimationsModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],
   providers: [

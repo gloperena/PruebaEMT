@@ -1,35 +1,39 @@
 <div class="container-fluid">
   <div class="jumbotron text-center">
     <h1>
-      <img class="logo mb-3" src="assets/EMT-logo.png" alt="angular logo" /><br />
+      <img
+        class="logo mb-3 rounded-circle shadow bg-white rounded"
+        src="assets/EMT-logo.png"
+        alt="angular logo"
+      /><br />
       <span class="mt-5" translate>Enacment technical test</span>
     </h1>
-    <app-loader [isLoading]="isLoading"></app-loader>
   </div>
-  <div class="container">
-    <form (submit)="onSubmit()">
-      <div class="mt-5">
-        <label for="numberInput" class="form-label" translate>Enter a number</label>
-        <input
-          type="number"
-          class="form-control"
-          id="numberInput"
-          name="numberInput"
-          [(ngModel)]="numberInput"
-          placeholder="Insert number"
-        />
+
+  <app-loader class="text-center align-middle" [isLoading]="isLoading"></app-loader>
+
+  <div class="container" *ngIf="isLoading == false">
+    <form class="example-form mt-5" [formGroup]="NumberForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="example-full-width w-100" appearance="fill">
+        <mat-label translate>Enter a number</mat-label>
+        <input type="number" formControlName="number_requested" [errorStateMatcher]="matcher" matInput />
+        <mat-error *ngIf="!NumberForm.valid" translate> Please enter a valid number </mat-error>
+      </mat-form-field>
+
+      <div class="mt-3 d-grid gap-2">
+        <button mat-raised-button color="primary" [disabled]="!NumberForm.valid">Submit</button>
       </div>
 
-      <div class="mt-4 d-grid gap-2">
-        <input class="btn btn-primary" type="submit" value="Submit" />
+      <div *ngIf="isSending" class="spinner-border text-info mt-5" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
     </form>
 
-    <div *ngIf="isSending" class="spinner-border text-info mt-5" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
+    <div class="text-center" *ngIf="result">
+      <mat-divider class="mt-4"></mat-divider>
 
-    <div class="mt-5">
+      <p class="mt-3 h5">Resultado</p>
+
       <p [style.color]="resultColor">
         <strong>{{ result }}</strong>
       </p>
