@@ -104,7 +104,7 @@ export class HomeComponent implements OnInit {
 
     let request = this.NumberForm;
 
-    //this.requestService.storeRequest(request.value);
+    this.requestService.storeRequest(request.value);
     this.openSnackBar('Petición guardada');
 
     this.isSending = false;
