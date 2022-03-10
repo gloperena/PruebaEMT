@@ -8,6 +8,7 @@ import { Request } from './request';
 import { FormGroup, FormControl, Validators, NgForm, FormGroupDirective } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { fromEventPattern } from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -37,11 +38,14 @@ export class HomeComponent implements OnInit {
   };
 
   NumberForm = new FormGroup({
-    number: new FormControl(1, [Validators.required, Validators.min(1)]),
+    number_requested: new FormControl(1, [Validators.required, Validators.min(1)]),
+    result: new FormControl(''),
+    requested_by: new FormControl(''),
+    requested_at: new FormControl(''),
   });
 
-  public get number() {
-    return this.NumberForm.get('number');
+  public get number_requested() {
+    return this.NumberForm.get('number_requested');
   }
 
   constructor(
@@ -69,7 +73,7 @@ export class HomeComponent implements OnInit {
 
   public onSubmit() {
     if (this.NumberForm.valid) {
-      this.executeSumbit(this.NumberForm.value.number);
+      this.executeSumbit(this.NumberForm.value.number_requested);
     }
   }
 
@@ -101,6 +105,12 @@ export class HomeComponent implements OnInit {
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
     var dateTime = date + ' ' + time;
+
+    this.NumberForm.patchValue({
+      result: this.result,
+      requested_by: this.username,
+      requested_at: dateTime,
+    });
 
     let request = this.NumberForm;
 
